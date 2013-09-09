@@ -12,6 +12,8 @@ local LOOP_MODE_FORWARD = 2
 local LOOP_MODE_BACKWARD = 3
 local LOOP_MODE_PINGPONG = 4
 
+local DEFAULT_BASE_NOTE = 48
+
 local nSlices = 4
 local rSliceSize = 0
 local nShownSlice = 0
@@ -385,7 +387,7 @@ function slice_it(bSliceShow)
     return
   end
 
-  local nBaseNote = smpSel.base_note
+  local nBaseNote = DEFAULT_BASE_NOTE
   
   --calculate how many slices there  have to be
   
@@ -544,9 +546,12 @@ function slice_it(bSliceShow)
       
         for sample_index,sample in pairs(insSel.samples) do
 
-          local base_note = sample.base_note
+          local base_note = DEFAULT_BASE_NOTE
           local note_range = {0, 119}
           local velocity_range = {0, 0x7f}
+
+
+
       
           if (sample_index > 1) then
             note_range[1] = base_note
